@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<title>Les Services AngularJS</title>
+
+</head>
+<body ng-app="myApp">
+
+<div ng-view></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+<script>
+var app = angular.module('myApp',['ngRoute'])
+.controller('CommentsCtrl', CommentsCtrl);
+CommentsCtrl.$inject = ['$scope'];
+
+
+app.config(function($routeProvider){
+  $routeProvider
+    .when('/', {templateUrl: 'partials/home.html', controller: 'PostsCtrl'})
+    .when('/comments/:id', {templateUrl: 'partials/comments.html'})
+    .otherwise({redirectTo: '/'});
+});
+
+app.service('Post', function(){
+  that = this;
+  that.posts = [
+        {
+          "id": 0,
+          "name": "Google",
+          "content": "Enim cupidatat reprehenderit occaecat eu cillum occaecat. Pariatur ut qui laboris minim cillum proident consectetur adipisicing eu consectetur. Eu officia consequat pariatur cupidatat. Reprehenderit magna culpa dolore officia eiusmod. Velit magna minim deserunt ut ea dolor sit quis ex pariatur esse Lorem culpa. Eiusmod incididunt commodo aliqua velit esse Lorem.",
+          "comments": []
+        },
+        {
+          "id": 1,
+          "name": "Oracle",
+          "content": "Occaecat veniam aliquip Lorem aute esse elit. Excepteur Lorem irure dolore fugiat. Eu incididunt amet id qui consequat laborum aute esse ea dolor ad eu. Incididunt velit ea pariatur officia est ut deserunt enim nulla. Reprehenderit incididunt consequat non irure nulla reprehenderit irure id laboris dolor. Voluptate ipsum cupidatat esse labore laborum cillum.",
+          "comments": []
+        },
+        {
+          "id": 2,
+          "name": "Apple",
+          "content": "Et Lorem officia culpa est fugiat ut nulla ullamco excepteur reprehenderit amet. Deserunt enim non adipisicing do anim ea tempor enim non voluptate non consectetur. Sit consequat aliquip fugiat dolore veniam est aliquip qui anim laborum anim ipsum tempor enim. Laboris cupidatat voluptate nostrud officia irure eiusmod consectetur laboris nisi consectetur veniam enim non. Irure consequat est ad sint consectetur esse enim incididunt laborum quis labore labore nulla. Incididunt cillum Lorem labore elit consequat ut ut aliqua.",
+          "comments": []
+        },
+        {
+          "id": 3,
+          "name": "Smart",
+          "content": "Ut id aliquip eiusmod reprehenderit culpa elit laborum magna. Culpa cupidatat id magna nulla in magna. In elit consequat cupidatat laboris do. Commodo officia anim proident nulla elit velit laboris aliqua laborum consectetur mollit quis exercitation. Culpa reprehenderit eu amet commodo duis ipsum do duis pariatur cupidatat proident. Et duis consequat cupidatat exercitation commodo ipsum esse officia sit consectetur ipsum.",
+          "comments": []
+        },
+        {
+          "id": 4,
+          "name": "Volvo",
+          "content": "Irure eiusmod in aliqua tempor nulla cillum excepteur reprehenderit pariatur excepteur ea dolor minim. Ad anim consectetur officia in labore sit non sit dolore anim irure sunt aute quis. Fugiat voluptate incididunt nisi eu Lorem consectetur voluptate in ex occaecat. Lorem culpa magna non sunt nulla proident est. Et veniam anim ad eu veniam dolor. Tempor excepteur aute tempor duis reprehenderit ad exercitation deserunt.",
+          "comments": []
+        },
+        {
+          "id": 5,
+          "name": "BMW",
+          "content": "Pariatur elit ad veniam eiusmod sit cillum qui id. Et non ea aliquip esse incididunt anim exercitation cupidatat. Ut consectetur ullamco occaecat excepteur eu deserunt amet irure mollit. Aliquip dolor laborum officia laboris qui. Fugiat sit excepteur aute laboris quis officia aliqua mollit fugiat duis. Do Lorem veniam aliqua dolore.",
+          "comments": []
+        },
+        {
+          "id": 6,
+          "name": "Mercedes",
+          "content": "Fugiat laboris officia ullamco anim eu sit fugiat eu ut proident. Culpa ex anim et esse. Officia ipsum proident aute deserunt exercitation ipsum exercitation consectetur nisi incididunt esse. Reprehenderit ipsum pariatur minim consectetur eiusmod nisi nisi ea esse exercitation adipisicing. Ullamco magna est adipisicing cillum et amet incididunt Lorem dolore. Velit esse quis consequat labore ex reprehenderit sit veniam.",
+          "comments": []
+        }
+      ];
+
+       that.getPosts = function(){
+        return that.posts;
+        }; 
+        
+        that.getPost = function(id){
+          var post = {};
+          angular.forEach(that.posts, function(value, key){
+            if(value.id == id){
+              post = value
+            }
+        });
+          return post;
+        }
+  
+   
+})
+
+app.controller('PostsCtrl', function($scope, Post){
+  $scope.posts = Post.getPosts();
+});
+
+
+function CommentsCtrl($scope, Post, $routeParams){
+	var post = Post.getPost($routeParams.id);
+  $scope.title = post.name;
+  $scope.comments = post.comments;
+  
+	
+	
+		
+	};
+
+
+
+</script>
+</body>
+</html>
