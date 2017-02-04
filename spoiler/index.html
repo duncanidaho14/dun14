@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            body{
+                color: #424242;
+                font-family: sans-serif;
+            }
+            .spoiler button{
+                background-color: #B9E937;color: #424242;
+                border: none;
+                border: 1px solid #00B906;
+                cursor: pointer;
+            }
+            .spoiler-content{
+                display: inline-block;
+                width: 0; 
+                height: 0; 
+                opacity: 0; 
+                overflow: hidden;
+                transition: opacity 0.5s;
+            }
+            .spoiler-content.visible{
+                display: inline; 
+                width: auto; 
+                height: auto; 
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque qui rerum fugit sequi quam necessitatibus esse, animi incidunt tenetur? Adipisci vero pariatur quisquam nihil itaque dolores esse suscipit eum quaerat!
+        </p>
+        
+        <p class="spoiler">
+            Monsieur X meurt à la fin
+        </p>
+        
+        <p>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi assumenda cum officiis laudantium dolor doloremque ea asperiores dolore. Animi sed quisquam expedita minus culpa saepe dignissimos perspiciatis labore iusto, assumenda.</span>
+            <span>Nulla nobis autem, <span class="spoiler">eius esse veniam</span> accusantium quas deserunt, dolorum aut alias aliquid sequi omnis incidunt culpa cupiditate. Veritatis officiis quidem repellendus quos porro ipsam illum obcaecati, deleniti cum distinctio.</span>
+            <span>Magni adipisci vitae magnam non quia fugit odio eum. Molestias deleniti doloremque dolore labore, optio accusamus voluptatum maiores, libero sunt distinctio incidunt aperiam, omnis ipsa unde, qui ad recusandae quod!</span>
+        </p>
+        
+        <script src="spoiler.js"></script>
+        
+    </body>
+</html>
